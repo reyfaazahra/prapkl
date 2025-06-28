@@ -74,13 +74,22 @@
                                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256" />
                                                 <path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
                                             </svg>
-                                            <span class=" bigcounter">
+                                            <span class="bigcounter">
                                                 {{ $cartItems->count() }}
                                             </span>
+
+
                                         </div>
+
                                     </div>
                                 </div>
+
+
                             </li>
+
+
+
+
 
                         </ul>
 
@@ -136,7 +145,7 @@
                                 <div class="setting__wrap cursor__pointer">
                                     <div class="setting__wrap__active">
 
-                                        <svg xmlns="{{asset('http://www.w3.org/2000/svg')}}" class="ionicon" viewBox="0 0 512 512">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
                                             <path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
                                             <path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
                                         </svg>
@@ -268,7 +277,29 @@
             </div>
             <div class="mobile-curr-lang-wrap">
 
-                
+                <div class="single-mobile-curr-lang">
+                    <a class="mobile-account-active" href="#">My Account <i class="fa fa-angle-down"></i></a>
+                    <div class="lang-curr-dropdown account-dropdown-active">
+                        <ul>
+                            @auth
+                            <li>
+                                <a href="">My Orders</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            @else
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Create Account</a></li>
+                            @endauth
+                        </ul>
+                    </div>
+                </div>
 
             </div>
             <div class="mobile-social-wrap">
@@ -295,7 +326,36 @@
             <h6><a href="#">Account</a></h6>
         </div>
 
-        
+        <div class="setting__wrap__list__inner">
+            <ul>
+                @auth
+                <li>
+                    <a href="">My Orders</a>
+                </li>
+                <li>
+                    <a href="{{ route('cart.index') }}">Cart</a>
+                </li>
+                <li>
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
+                        Logout
+                    </a>
+                </li>
+                <form id="logout-form-2" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                @else
+                <li>
+                    <a href="{{ route('login') }}">Login</a>
+                </li>
+                <li>
+                    <a href="{{ route('cart.index') }}">Cart</a>
+                </li>
+                <li>
+                    <a href="{{ route('register') }}">Create Account</a>
+                </li>
+                @endauth
+            </ul>
+        </div>
     </div>
 
     <!-- setting__wrap__list__end -->

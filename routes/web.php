@@ -34,6 +34,6 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 
     Route::get('/', [BackendController::class, 'index']);
 
     //crud
-    Route::resource('category', CategoryController::class);
-    Route::resource('product', ProductController::class);
+    Route::resource('/category', CategoryController::class);
+    Route::resource('/product', ProductController::class);
 });
